@@ -11,15 +11,18 @@ public class BattleManager : MonoBehaviour
     public EnemyUIManager enemyUI;
     public PlayerManager player;
     EnemyManager enemy;
+    public bool canAttack = false;
 
     public void Start()
     {
         enemyUI.gameObject.SetActive(false);
+        playerUI.SetupUI(player);
     }
 
     //初期設定
     public void Setup(EnemyManager enemyManager)
     {
+        canAttack = true;
         SoundManager.instance.PlayBGM("Battle");
         enemyUI.gameObject.SetActive(true);
     enemy = enemyManager;
@@ -34,6 +37,11 @@ public class BattleManager : MonoBehaviour
 
     void PlayerAttack()
     {
+        if(canAttack == false)
+        {
+            return;
+        }
+        canAttack = false;
         StopAllCoroutines();
         SoundManager.instance.PlaySE(1);
         int damage = player.Attack(enemy);
@@ -58,6 +66,15 @@ public class BattleManager : MonoBehaviour
         int damage = enemy.Attack(player);
         DialogTextManager.instance.SetScenarios(new string[] {
             "Enemy Attack ! \n player got damage "+damage+" " });
+        yield return new WaitForSeconds(1f);
+        if (player.hp <= 0)
+        {
+            questManager.PlayerDeath();
+        }
+        else
+        {
+            canAttack = true;
+        }
     }
 
     IEnumerator EndBattle()

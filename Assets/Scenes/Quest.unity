@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c4bba6fe3024b48aa1f54b16d01ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  at: 2
+  hp: 50
+  at: 5
   testprefab: {fileID: 7869129407204361783, guid: 0d425a59954f4400485282ed51c6c655, type: 3}
 --- !u!4 &257542698
 Transform:
@@ -1230,6 +1230,7 @@ MonoBehaviour:
   playerUI: {fileID: 922023757}
   enemyUI: {fileID: 1370453918}
   player: {fileID: 257542697}
+  canAttack: 0
 --- !u!4 &1105664031
 Transform:
   m_ObjectHideFlags: 0
@@ -1724,9 +1725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de05085776c08448e8694d538cba4234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: name
-  hp: 12
-  at: 2
+  name: Enemy
+  hp: 30
+  at: 5
 --- !u!4 &1445289756
 Transform:
   m_ObjectHideFlags: 0
